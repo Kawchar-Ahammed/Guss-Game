@@ -1,5 +1,5 @@
 # Guess Number Game
-# Game Link
+## Game Link
 [Geuss Game - Random Number](https://geuss-game-random-number.netlify.app/)
 
 ## Overview
