@@ -1,4 +1,6 @@
 # Guess Number Game
+# Game Link
+[Geuss Game - Random Number](https://geuss-game-random-number.netlify.app/)
 
 ## Overview
 The **Guess Number** game is a fun and interactive game where the player has to guess a randomly generated number within a specified range. As the player progresses, the difficulty increases, and they move up levels by correctly guessing the number. Players lose a heart (life) for each incorrect guess, and if they run out of hearts, the game restarts.
