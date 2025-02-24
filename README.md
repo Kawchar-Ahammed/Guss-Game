@@ -2,9 +2,9 @@
 Goal: Begin a new game session.
 When: The game starts when the user clicks the "Start Game" button on index.html, which redirects them to 2nd_page.html.
 How: The 2nd_page.html page loads, and the game initializes with:
--- A default number of 10 hearts (lives).
--- A starting point of 0.
--- A final level set to 1.
+- A default number of 10 hearts (lives).
+- A starting point of 0.
+- A final level set to 1.
 A random number between 0 and 10 (can increase based on the level).
 Interaction: The user is asked to guess a number within the specified range. They will enter their guess in an input box, and upon clicking "Check", the game checks if the guess is correct.
 ## 2. Game Operation:
