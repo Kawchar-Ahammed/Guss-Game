@@ -1,32 +1,72 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Kawchar Ahammed</title>
-    <link rel="stylesheet" href="./style.css">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="description" content="Number Quest: crack the secret number, climb levels, unlock achievements and beat your best score.">
+<meta name="theme-color" content="#14122b">
+<title>Number Quest – Guess the Number</title>
+<link rel="stylesheet" href="style.css">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="icon" href="icon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="icon-180.png">
 </head>
 <body>
-    <script src="./random_number.js"></script>
-    <div class="top">
-        <h1>Guess Number</h1>
-        <p class="heart"> Heart : <span id="heart">10</span> </p>
-        <p class="point"> Point : <span id="point">0</span> </p>
-        <p class="level"> Level : <span id="level">1</span> </p>        
+<div id="bg" aria-hidden="true"><i></i><i></i><i></i></div>
+<main class="app">
+  <section id="menu" class="screen">
+    <h1>Number<span>Quest</span></h1>
+    <p class="tag">Crack the secret number. Every level gets bigger.</p>
+    <input id="name" maxlength="12" placeholder="Your name" aria-label="Your name" autocomplete="nickname">
+    <div class="row" id="modes"><button class="btn mode" data-m="classic">🎯 Classic</button><button class="btn mode" data-m="blitz">⚡ Blitz</button><button class="btn mode" data-m="survival">🛡️ Survival</button><button class="btn mode" data-m="rush">🔥 Rush</button></div>
+    <p class="tag" id="modeDesc"></p>
+    <select id="diff" aria-label="Difficulty"><option value="easy">😌 Easy</option><option value="normal">🙂 Normal</option><option value="hard">😈 Hard</option></select>
+    <p class="tag"><span id="streakTxt"></span> 🪙 <b id="coins">0</b></p>
+    <button id="cont" class="btn primary" hidden>⏩ Continue run</button>
+    <button id="start" class="btn primary">▶ New game</button>
+    <div class="row"><button id="daily" class="btn">📅 Daily Challenge</button><button id="drush" class="btn">🔥 Daily Rush</button></div>
+    <button id="chal" class="btn">🤝 Challenge a friend</button>
+    <div class="row"><button id="missions" class="btn">📋 Missions</button><button id="shop" class="btn">🛍️ Shop</button><button id="stats" class="btn">📊 Stats</button></div>
+    <div class="row">
+      <button id="showAch" class="btn">🏆 Achievements</button>
+      <button id="mute" class="btn" aria-label="Toggle sound">🔊</button><button id="settings" class="btn" aria-label="Settings">⚙️</button>
     </div>
+    <h2>Leaderboard <small>(this device)</small></h2>
+    <ol id="board"></ol>
+  </section>
 
-    <div class="bottom">
-        <h1>Let's Test Your Guess</h1>
-        <h6>How to play?</h6>
-            <p>The game will generate a random number within a specific range (e.g., 1 to 100).</p>
-            <p>You have to enter a number and submit your guess.</p>
-            <p>If your guess is too low, the game will tell you: "Too low! Try a higher number."</p>
-            <p>If your guess is too high, the game will say: "Too high! Try a lower number."</p>
-            <p>If your guess is correct Congratulations! you can play the next level.</p>
-            <p>for each level you have 10 life. You will loss 1 life for each incorrect guess.</p>
-        <button > <a href="./2nd_page.html">Start Game</a></button>
-        
+  <section id="game" class="screen" hidden>
+    <header class="hud">
+      <div><small>Level</small><b id="level">1</b></div>
+      <div><small>Score</small><b id="score">0</b></div>
+      <div><small>Hearts</small><b id="hearts">❤️ 6</b></div>
+    </header>
+    <p id="twist" class="twist" hidden></p>
+    <div id="clock" class="bar clock" hidden><i id="clockbar"></i></div>
+    <p class="prompt">Find the number between <b>0</b> and <b id="max">10</b></p>
+    <div class="bar" aria-hidden="true"><i id="win"></i></div>
+    <p class="known" id="known"></p>
+    <form id="form" novalidate>
+      <input id="guess" type="number" inputmode="numeric" min="0" placeholder="Your guess" aria-label="Your guess" autocomplete="off">
+      <button class="btn primary" id="go">Guess</button>
+    </form>
+    <p id="msg" class="msg" role="status" aria-live="polite">Make your first guess!</p>
+    <ul id="chips" class="chips" aria-label="Previous guesses"></ul>
+    <div class="row pw"><button id="pHalf" class="btn"></button><button id="pHeart" class="btn"></button><button id="pDigit" class="btn"></button></div>
+    <div class="row">
+      <button id="hint" class="btn">💡 Hint (2)</button>
+      <button id="quit" class="btn">✕ Exit</button>
     </div>
+  </section>
+</main>
+
+<dialog id="over"><h2 id="overTitle"></h2><p id="overText"></p>
+  <div class="row"><button id="again" class="btn primary">Play again</button><button id="share" class="btn">📤 Share</button><button id="toMenu" class="btn">Menu</button></div></dialog>
+<dialog id="ach"><h2>Achievements</h2><ul id="achList"></ul>
+  <button id="closeAch" class="btn primary">Close</button></dialog>
+<dialog id="panel"><h2 id="pTitle"></h2><div id="pBody"></div><button id="closeP" class="btn primary">Close</button></dialog>
+<div id="toast" role="status" aria-live="polite"></div>
+<div id="fx" aria-hidden="true"></div>
+<script src="game.js"></script>
 </body>
 </html>
